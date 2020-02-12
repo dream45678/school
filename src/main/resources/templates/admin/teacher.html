@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/css/common.css">
+		<link rel="stylesheet" type="text/css" href="/css/StudentInfo.css"/>
+	</head>
+	<body>
+		<div class="container flgure">
+			<div class="content">
+				<!--<ul class="clearfix info">
+					<li class="active">教师管理</li>
+				</ul>-->
+				<div class="basic">
+					<div class="basicInfo select active">
+						<div class="thead">
+							<span th:text="'班级总人数：'+${countnum}"></span>
+							<p>教师管理</p>
+						</div>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<th>姓名</th>
+								<th>手机号</th>
+								<th>邮箱</th>
+								<th>操作</th>
+							</tr>
+							<tr th:each="u:${users}">
+								<td th:text="${u.name}">男女人数</td>
+								<td th:text="${u.phone}"></td>
+								<td th:text="${u.email}"></td>
+								<td>
+									<a href="#">修改</a>
+									<a href="#">删除</a>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="6">
+									<a th:href="@{/users/selectUsersList(power='teacher')}">首页</a>
+									<a th:href="@{/users/selectUsersList(power='teacher',currentPage=${current-1})}">上一页</a>
+									<a th:href="@{/users/selectUsersList(power='teacher',currentPage=${current+1})}">下一页</a>
+									<a th:href="@{/users/selectUsersList(power='teacher',currentPage=${count})}">末页</a>
+									<span>[<span th:text="${current}"></span>/<span th:text="${count}"></span>]</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		<script src="/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">
+			$('.info li').click(function() {
+				$(this).addClass("active").siblings().removeClass("active");
+				$('.basic .select').eq($("ul li").index(this)).addClass("active").siblings().removeClass("active")
+			});
+		</script>
+	</body>
+</html>

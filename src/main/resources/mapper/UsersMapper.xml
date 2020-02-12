@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.graduation.admin.mapper.UsersMapper">
+
+    <select id="selectUsersList" parameterType="com.graduation.entity.Users" resultType="com.graduation.entity.Users">
+        select * from users
+        <where>
+            1=1
+            <if test="users.username != null and users.username != ''">
+                and username = #{users.username}
+            </if>
+            <if test="users.password != null and users.password != ''">
+                and password = #{users.password}
+            </if>
+            <if test="users.power != null and users.power != ''">
+                and power = #{users.power}
+            </if>
+            <if test="users.name != null and users.name != ''">
+                and name = #{users.name}
+            </if>
+            <if test="users.studentId != null and users.studentId != ''">
+                and studentId = #{users.studentId}
+            </if>
+            <if test="users.gradeId != null">
+                and gradeId = #{users.gradeId}
+            </if>
+            <if test="users.phone != null and users.phone != ''">
+                and phone = #{users.phone}
+            </if>
+            <if test="users.email != null and users.email != ''">
+                and email = #{email}
+            </if>
+            <if test="users.sex != null and users.sex != ''">
+                and sex = #{users.sex}
+            </if>
+            <if test="users.teacherId != null">
+                and teacherId = #{users.teacherId}
+            </if>
+            <if test="users.id != null">
+                and id = #{users.id}
+            </if>
+        </where>
+        <if test="currentPage != null and PageSize != null">
+            order by id desc offset #{currentPage} row fetch next #{PageSize} rows only
+        </if>
+    </select>
+
+    <update id="updateUsers" parameterType="com.graduation.entity.Users">
+        update [dbo].[users]
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="username != null  and username != ''">username = #{username},</if>
+            <if test="password != null  and password != ''">password = #{password},</if>
+            <if test="power != null  and power != ''">[power] = #{power},</if>
+            <if test="name != null  and name != ''">[name] = #{name},</if>
+            <if test="studentId != null and studentId != ''">studentId = #{studentId},</if>
+            <if test="gradeId != null">gradeId = #{gradeId},</if>
+            <if test="phone != null  and phone != ''">phone = #{phone},</if>
+            <if test="email != null  and email != ''">email = #{email},</if>
+            <if test="sex != null  and sex != ''">sex = #{sex},</if>
+            <if test="age != null">age = #{age},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUsers" parameterType="com.graduation.entity.Users">
+
+    </delete>
+
+    <insert id="insertUsers" parameterType="com.graduation.entity.Users">
+        INSERT INTO [dbo].[users]
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null  and username != ''">username,</if>
+            <if test="password != null  and password != ''">[password],</if>
+            <if test="power != null  and power != ''">[power],</if>
+            <if test="name != null  and name != ''">[name],</if>
+            <if test="studentId != null and studentId != ''">studentId,</if>
+            <if test="gradeId != null">gradeId,</if>
+            <if test="phone != null  and phone != ''">phone,</if>
+            <if test="email != null  and email != ''">email,</if>
+            <if test="sex != null  and sex != ''">sex,</if>
+            <if test="age != null">age,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null  and username != ''">#{username},</if>
+            <if test="password != null  and password != ''">#{password},</if>
+            <if test="power != null  and power != ''">#{power},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="studentId != null and studentId != ''">#{studentId},</if>
+            <if test="gradeId != null">#{gradeId},</if>
+            <if test="phone != null  and phone != ''">#{phone},</if>
+            <if test="email != null  and email != ''">#{email},</if>
+            <if test="sex != null  and sex != ''">#{sex},</if>
+            <if test="age != null">#{age},</if>
+        </trim>
+    </insert>
+</mapper>

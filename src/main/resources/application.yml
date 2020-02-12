@@ -1,0 +1,28 @@
+
+server:
+  port: 8080
+
+# mybatis ≈‰÷√
+mybatis:
+  type-aliases-package: com.graduation.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+## -------------------------------------------------
+
+## SqlServer ≈‰÷√
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1434;databasename=school
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: sa
+    password: root
+
+#thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    cache: false
